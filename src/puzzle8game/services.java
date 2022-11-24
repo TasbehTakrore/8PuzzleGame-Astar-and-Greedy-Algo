@@ -69,7 +69,7 @@ public class services{
 //        }
 
     
-    public static final void AstarAlgo(){
+    public static final void AstarAlgo(node startNode){
     HashMap <Integer, String> openList = new HashMap<Integer, String>();
     HashMap <Integer, String> aceesHurOpen = new HashMap<Integer, String>();
     LinkedHashMap <Integer, String> closedList = new LinkedHashMap<Integer, String>();
@@ -87,11 +87,13 @@ System.out.println("openList: "+openList);
     
 
     }
-    public static final void greedyAlgo(){
+    public static final void greedyAlgo(node startNode){
         
     HashMap <Integer, String> openList = new HashMap<Integer, String>();
     HashMap <Integer, String> aceesHurOpen = new HashMap<Integer, String>();
     LinkedHashMap <Integer, String> closedList = new LinkedHashMap<Integer, String>();
+    
+    System.out.println("in greedy!");
     
     }
 
