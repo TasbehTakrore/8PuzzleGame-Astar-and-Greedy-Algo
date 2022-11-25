@@ -20,6 +20,8 @@ public class GUIPuzzle extends javax.swing.JFrame {
     
         //public static enum MOVES{UP, DOWN, RIGHT, LEFT};
     node startNode = null;
+    node endNode = null;
+    
     private final JButton startbtns [][];
     private final JButton endbtns[][];
     public static int startvalues [][]; 
@@ -188,8 +190,8 @@ public class GUIPuzzle extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        testPathLabel = new javax.swing.JLabel();
+        soluPathLable = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jButton29 = new javax.swing.JButton();
         jButton30 = new javax.swing.JButton();
@@ -443,7 +445,7 @@ public class GUIPuzzle extends javax.swing.JFrame {
         jButton27.setForeground(new java.awt.Color(95, 141, 78));
         jButton27.setText("0");
         jButton27.setActionCommand("end");
-        jButton27.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        jButton27.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButton27.setBorderPainted(false);
         jButton27.setContentAreaFilled(false);
         jButton27.addActionListener(new java.awt.event.ActionListener() {
@@ -607,11 +609,11 @@ public class GUIPuzzle extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Solution Path:");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("...");
+        testPathLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        testPathLabel.setText("...");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("...");
+        soluPathLable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        soluPathLable.setText("...");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -623,11 +625,11 @@ public class GUIPuzzle extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(soluPathLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(testPathLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,11 +637,11 @@ public class GUIPuzzle extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel7))
+                    .addComponent(testPathLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel8))
+                    .addComponent(soluPathLable))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -879,14 +881,16 @@ public class GUIPuzzle extends javax.swing.JFrame {
         else
             HurType = 1;//Til
         
-        startNode = new node(startvalues, HurType, null, -1);
-
+        startNode = new node(startvalues, HurType, null, "Start:"); // create start node
+        
        // int AlgoType;
         if(Astar.isSelected())
-            AstarAlgo(startNode);
+              services.AstarAlgo(startNode);
         else
-            greedyAlgo(startNode);
+            endNode =  services.greedyAlgo(startNode, HurType);
         
+        // print path
+        soluPathLable.setText(endNode.myPath);
         
         
         
@@ -975,8 +979,6 @@ public class GUIPuzzle extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -984,5 +986,7 @@ public class GUIPuzzle extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButton manahattan;
+    private javax.swing.JLabel soluPathLable;
+    private javax.swing.JLabel testPathLabel;
     // End of variables declaration//GEN-END:variables
 }
