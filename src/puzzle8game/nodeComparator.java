@@ -17,9 +17,9 @@ public class nodeComparator implements Comparator<node>{
                         // for descending order of cgpa
       @Override
             public int compare(node n1, node n2) {
-                if (n1.hur <= n2.hur)
+                if (n1.hurPlsCost <= n2.hurPlsCost)
                     return -1;
-                else if (n1.hur > n2.hur)
+                else if (n1.hurPlsCost > n2.hurPlsCost)
                     return 1;
                                 return 0;
                 }

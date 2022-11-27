@@ -15,20 +15,25 @@ public class node {
 
     int key;
     int values[][];
-    int hur;
+    int hur; // when greedy> cost =0, when A* we have cost...
     node parent;
     String myPath;
+    int valueThatSwaped;
+    int hurPlsCost;
 
-    public node(int curentValues[][], int hurType, node paret, String valueThatMove) {
+    public node(int curentValues[][], int hurType, node paret, String valueThatMove, int valThatSwaped, int cost) {
         values = curentValues;
         key = calKey(curentValues);
         if (hurType == 0) {
-            hur = services.M_Huirestic(curentValues, endvalues);
+            hur = services.M_Huirestic(curentValues, endvalues)+cost;
+            hurPlsCost = hur +cost;
         } else {
-            hur = services.T_Huirestic(curentValues, endvalues);
+            hur = services.T_Huirestic(curentValues, endvalues)+cost;
+            hurPlsCost = hur +cost;
         }
         parent = paret;
         myPath = valueThatMove;
+        valueThatSwaped = valThatSwaped;
     }
 
     public static Integer calKey(int curentValues[][]) { // Key calculation 

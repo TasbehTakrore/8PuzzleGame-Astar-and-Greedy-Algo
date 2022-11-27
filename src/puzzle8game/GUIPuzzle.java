@@ -5,8 +5,8 @@
  */
 package puzzle8game;
 
+
 import javax.swing.*;
-import static puzzle8game.services.*;
 
 /**
  *
@@ -25,22 +25,23 @@ public class GUIPuzzle extends javax.swing.JFrame {
     private final JButton startbtns [][];
     private final JButton endbtns[][];
     public static int startvalues [][]; 
-    
+    JButton jb ;
+    //JButton jb;
     public static int endvalues [][];
+    public static int endKey;
 //    public static int curntvalues [][]={{1,3,0},{2,4,7},{6,5,8}};    
 //    public static int endvalues [][]={{1,2,3},{4,5,6},{8,7,0}};
     JButton btns [][] = null;
     //services calcu = new services();
     //enum ptnn { btns ,  endbtns};
-    
 
-
-    int f=1;
+    int f;
     
     public GUIPuzzle() {
         initComponents();
-       // jButton9.setVisible(false); 
-      
+        f=1;
+        jb = new JButton();
+       
         buttonGroup1.add(Tiles);
         buttonGroup1.add(manahattan);
         buttonGroup2.add(Astar);
@@ -51,13 +52,20 @@ public class GUIPuzzle extends javax.swing.JFrame {
         
         this.endbtns = new JButton[][]{{jButton19,jButton20,jButton21},
                                     {jButton22,jButton23,jButton24},
-                                    {jButton25,jButton26,jButton27}};        
+                                    {jButton25,jButton26,jButton27}};
+
+
+//                jb.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                jButtonJBActionPerformed(evt);
+//            }
+//        });
     }
     
     private void swape(JButton pressedBtn){
         String pressedBtnText = pressedBtn.getText();
         
-        //System.out.print();
+        //System.out.println("in swape:" + pressedBtn.getText()+"  -");
         if (pressedBtn.getActionCommand().equals("end"))
              btns = endbtns;
         else
@@ -67,7 +75,7 @@ public class GUIPuzzle extends javax.swing.JFrame {
             for(int col=0; col<3; col++){
                 if(btns[row][col].getText().equals(pressedBtnText)) // to know pressed btn
                 {
-                     //      System.out.print("$$ "+row+"|"+col+"|");
+                     //System.out.print("$$ "+row+"|"+col+"|");
 
                     //if 0 up
                     if(row>0){
@@ -123,6 +131,8 @@ public class GUIPuzzle extends javax.swing.JFrame {
       }
             if (f==0) break;
         }
+        jPanel2.repaint();
+        jPanel2.revalidate();
     }
     
     void editButtonsStyle(int row1, int col1, int row2, int col2){
@@ -188,13 +198,11 @@ public class GUIPuzzle extends javax.swing.JFrame {
         Greedy = new javax.swing.JRadioButton();
         jButton28 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        testPathLabel = new javax.swing.JLabel();
         soluPathLable = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jButton29 = new javax.swing.JButton();
+        simButton = new javax.swing.JButton();
         jButton30 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -603,58 +611,20 @@ public class GUIPuzzle extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(229, 217, 182));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("Test Path:");
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Solution Path:");
-
-        testPathLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        testPathLabel.setText("...");
 
         soluPathLable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         soluPathLable.setText("...");
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(soluPathLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(28, 28, 28)
-                        .addComponent(testPathLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(testPathLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(soluPathLable))
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel9.setText("8 PUZZLE GAME!");
-
-        jButton29.setBackground(new java.awt.Color(229, 217, 182));
-        jButton29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton29.setText("simulate ");
-        jButton29.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton29.addActionListener(new java.awt.event.ActionListener() {
+        simButton.setBackground(new java.awt.Color(229, 217, 182));
+        simButton.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        simButton.setText("simulate ");
+        simButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        simButton.setEnabled(false);
+        simButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton29ActionPerformed(evt);
+                simButtonActionPerformed(evt);
             }
         });
 
@@ -668,13 +638,44 @@ public class GUIPuzzle extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(soluPathLable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(simButton, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(soluPathLable)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(simButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel9.setText("8 PUZZLE GAME!");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(109, 109, 109)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
@@ -689,12 +690,7 @@ public class GUIPuzzle extends javax.swing.JFrame {
                             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(111, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -704,29 +700,26 @@ public class GUIPuzzle extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton30, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(122, 122, 122)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton28, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(354, 354, 354))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -881,29 +874,124 @@ public class GUIPuzzle extends javax.swing.JFrame {
         else
             HurType = 1;//Til
         
-        startNode = new node(startvalues, HurType, null, "Start:"); // create start node
-        
+        startNode = new node(startvalues, HurType, null, "s",0,0); // create start node
+        endKey = calKey(endvalues);
+        //        System.out.println("endKey+++++: "+endKey);
+
+        if(startNode.key == endKey){
+            soluPathLable.setText("The starting point and the ending point are the same!");
+            return;
+        }
        // int AlgoType;
         if(Astar.isSelected())
-              services.AstarAlgo(startNode);
+        {    endNode =  services.AstarAlgo(startNode,HurType);
+             soluPathLable.setText(endNode.myPath.substring(2));
+            // soluPathLable.setText(endNode.myPath);
+    
+        }
         else
-            endNode =  services.greedyAlgo(startNode, HurType);
-        
-        // print path
-        soluPathLable.setText(endNode.myPath);
+        {  endNode =  services.greedyAlgo(startNode, HurType);
+           soluPathLable.setText(endNode.myPath.substring(2));
+
+        }
+        System.out.print("___________________________________________________________\n");
+
+        simButton.setEnabled(true);
         
         
         
     }//GEN-LAST:event_jButton28ActionPerformed
 
-    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
+    private void simButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton29ActionPerformed
+        String path = endNode.myPath.substring(2);
+                //conv path to array of element
+        String arrOfPath[]= path.split(",");
+                //Arrays.stream(path.split(",")).mapToInt(Integer::parseInt).toArray();
+        btns = startbtns;     
+        //find
+        for (String element : arrOfPath) {
 
+            jb.setText(element);
+            swape(jb);
+            delay();
+            
+        }
+            
+            
+         
+
+    }//GEN-LAST:event_simButtonActionPerformed
+//
+//     void move(String val){
+//        
+//        String valToMove = val;
+//       
+//    }
+    
+    void delay(){
+                                try {
+                      Thread.sleep(1 * 100);
+                      System.out.println("sleep..");
+                        } catch (Exception ie) {
+                      System.out.println(ie);
+                        }
+    }
+    
+    
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
         // TODO add your handling code here:
+        
+     
+       //set text and style
+      int data =1;
+        for(int row =0; row<3; row++){
+            for(int col=0; col<3; col++){
+                startbtns[row][col].setText(data + col+"");
+                startbtns[row][col].setBackground(new java.awt.Color(229, 217, 182));
+                startbtns[row][col].setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+                startbtns[row][col].setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                startbtns[row][col].setBorderPainted(true);
+                startbtns[row][col].setContentAreaFilled(true);   
+                startbtns[row][col].setForeground(new java.awt.Color(0, 0, 0));  
+         
+                endbtns[row][col].setText(data + col+"");
+                endbtns[row][col].setText(data + col+"");
+                endbtns[row][col].setBackground(new java.awt.Color(229, 217, 182));
+                endbtns[row][col].setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+                endbtns[row][col].setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                endbtns[row][col].setBorderPainted(true);
+                endbtns[row][col].setContentAreaFilled(true);   
+                endbtns[row][col].setForeground(new java.awt.Color(0, 0, 0));  
+                         
+                }
+             data +=3;
+            if(data>7){ // last button 0
+                    
+                    startbtns[2][2].setText("0");
+                    startbtns[2][2].setBackground(new java.awt.Color(95, 141, 78));
+                    startbtns[2][2].setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+                    startbtns[2][2].setBorder(javax.swing.BorderFactory.createEmptyBorder());
+                    startbtns[2][2].setBorderPainted(false);
+                    startbtns[2][2].setContentAreaFilled(false);
+                    startbtns[2][2].setForeground(new java.awt.Color(95, 141, 78));
+
+                    endbtns[2][2].setText("0");
+                    endbtns[2][2].setBackground(new java.awt.Color(95, 141, 78));
+                    endbtns[2][2].setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+                    endbtns[2][2].setBorder(javax.swing.BorderFactory.createEmptyBorder());
+                    endbtns[2][2].setBorderPainted(false);
+                    endbtns[2][2].setContentAreaFilled(false);
+                    endbtns[2][2].setForeground(new java.awt.Color(95, 141, 78));
+      
+            }
+                         
+        }
+        
     }//GEN-LAST:event_jButton30ActionPerformed
 
+ 
+    
     /**
      * @param args the command line arguments
      */
@@ -964,7 +1052,6 @@ public class GUIPuzzle extends javax.swing.JFrame {
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton4;
@@ -977,7 +1064,6 @@ public class GUIPuzzle extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -986,7 +1072,31 @@ public class GUIPuzzle extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButton manahattan;
-    private javax.swing.JLabel soluPathLable;
-    private javax.swing.JLabel testPathLabel;
+    private javax.swing.JButton simButton;
+    public javax.swing.JLabel soluPathLable;
     // End of variables declaration//GEN-END:variables
+
+//    private void simubuttonInputMethodTextChanged(ActionEvent ev) {
+//        System.out.println("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        swape(simubtn);
+//    }
+    
+        private void jButtonJBActionPerformed(java.awt.event.InputMethodEvent evt) {                                               
+        // TODO add your handling code here:
+        System.out.println("click to swape");
+        swape(jb);
+    }                                              
+
+    public static Integer calKey(int curentValues[][]) { // Key calculation 
+        StringBuilder strNum = new StringBuilder();
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                strNum.append(curentValues[row][col]);
+            }
+        }
+        Integer finalInt = Integer.parseInt(strNum.toString());
+        return finalInt;
+
+    }
+        
 }
